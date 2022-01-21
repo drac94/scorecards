@@ -11,6 +11,6 @@ const countryCatalogSchema = new mongoose.Schema({
   },
 });
 
-const CountryCatalog = mongoose.model<CountryCatalogType>('Country', countryCatalogSchema);
+const CountryCatalog = mongoose.model<CountryCatalogType>('CountryCatalog', countryCatalogSchema);
 
 export default CountryCatalog;
