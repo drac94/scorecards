@@ -1,10 +1,10 @@
 import { IResolvers } from 'apollo-server-express';
 
-import getCountries from './country';
+import countries from './country';
 
 const resolvers: IResolvers = {
   Query: {
-    getCountries,
+    countries,
   },
 };
 
