@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import CountryCatalog from './country-catalog';
+import Country from './country';
 
 export type CityCatalogType = {
   country: string;
@@ -9,7 +9,7 @@ export type CityCatalogType = {
 
 const cityCatalogSchema = new mongoose.Schema({
   country: {
-    ref: CountryCatalog,
+    ref: Country,
     required: true,
     type: Schema.Types.ObjectId,
   },
