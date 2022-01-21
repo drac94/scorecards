@@ -1,45 +1,31 @@
 import mongoose from 'mongoose';
 
-export type IUser = {
-  firstName: string;
-  lastName: string;
+export type UserType = {
   email: string;
+  firstName: string;
   hashedPassword: string;
-  created?: string;
-  changed?: string;
-  lastActive?: string;
+  lastName: string;
 } & mongoose.Document;
 
 const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
   email: {
-    type: String,
     required: true,
+    type: String,
+  },
+  firstName: {
+    required: true,
+    type: String,
   },
   hashedPassword: {
-    type: String,
     required: true,
+    type: String,
   },
-  created: {
-    type: Date,
-    default: Date.now,
-  },
-  changed: {
-    type: Date,
-    default: Date.now,
-  },
-  lastActive: {
-    type: Date,
+  lastName: {
+    required: true,
+    type: String,
   },
 });
 
-const User = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model<UserType>('User', userSchema);
 
 export default User;

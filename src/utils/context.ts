@@ -1,10 +1,10 @@
 import { Request } from 'express';
 
-import User, { IUser } from '../models/user';
+import User, { UserType } from '../models/user';
 
 import tokenUtil from './token';
 
-const getUser = async (req: Request): Promise<IUser | null> => {
+const getUser = async (req: Request): Promise<UserType | null> => {
   if (!req) {
     return null;
   }

@@ -6,14 +6,8 @@ const typeDef = gql`
 `;
 
 const DateTime = new GraphQLScalarType({
-  name: 'DateTime',
   description: 'A DateTime representation in ISO format',
-  parseValue(value) {
-    return value;
-  },
-  serialize(value) {
-    return value;
-  },
+  name: 'DateTime',
   parseLiteral(ast) {
     if (ast.kind === Kind.INT) {
       return new Date(ast.value);
@@ -21,11 +15,17 @@ const DateTime = new GraphQLScalarType({
 
     return null;
   },
+  parseValue(value) {
+    return value;
+  },
+  serialize(value) {
+    return value;
+  },
 });
 
 export default {
-  typeDef,
   resolvers: {
     DateTime,
   },
+  typeDef,
 };

@@ -1,17 +1,16 @@
-import { IUser } from '../../../models/user';
+import { UserType } from '../../../models/user';
 
 type Context = {
-  user: IUser;
+  user: UserType;
 };
 
 const me = async (_parent: any, _args: any, context: Context) => {
   const { user } = context;
   return {
-    lastName: user.lastName,
-    firstName: user.firstName,
     email: user.email,
+    firstName: user.firstName,
     id: user.id,
-    created: user.created,
+    lastName: user.lastName,
   };
 };
 

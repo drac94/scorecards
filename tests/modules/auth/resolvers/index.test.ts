@@ -11,9 +11,9 @@ type User = {
 
 const testUser = {
   email: 'test-user@gmail.com',
-  password: 'test1234',
   firstName: 'test',
   lastName: 'user',
+  password: 'test1234',
 };
 
 const signup = (
@@ -67,7 +67,7 @@ describe('auth', () => {
   });
 
   describe('login', () => {
-    it('should succesfully login and return a token', () => {
+    it('should successfully login and return a token', () => {
       return request({
         query: `
             mutation {
@@ -136,7 +136,7 @@ describe('auth', () => {
       });
     });
 
-    it('should succesfully return the profile from me', () => {
+    it('should successfully return the profile from me', () => {
       const { token } = loginResponse.data.login;
 
       return request({
