@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
 import Candidate from './candidate';
-import CityCatalog from './city-catalog';
-import ClientCatalog from './client-catalog';
-import LevelCatalog from './level-catalog';
-import TechnologyCatalog from './technology-catalog';
+import City from './city';
+import Client from './client';
+import Level from './level';
+import Technology from './technology';
 import User from './user';
 
 export type JobApplicationType = {
@@ -106,7 +106,7 @@ const jobApplicationSchema = new mongoose.Schema({
     },
   ],
   client: {
-    ref: ClientCatalog,
+    ref: Client,
     required: true,
     type: Schema.Types.ObjectId,
   },
@@ -120,7 +120,7 @@ const jobApplicationSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
   },
   level: {
-    ref: LevelCatalog,
+    ref: Level,
     required: true,
     type: Schema.Types.ObjectId,
   },
@@ -133,12 +133,12 @@ const jobApplicationSchema = new mongoose.Schema({
     type: Number,
   },
   place: {
-    ref: CityCatalog,
+    ref: City,
     required: true,
     type: Schema.Types.ObjectId,
   },
   technology: {
-    ref: TechnologyCatalog,
+    ref: Technology,
     required: true,
     type: Schema.Types.ObjectId,
   },

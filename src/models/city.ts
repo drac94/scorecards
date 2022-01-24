@@ -2,12 +2,12 @@ import mongoose, { Schema } from 'mongoose';
 
 import Country from './country';
 
-export type CityCatalogType = {
+export type CityType = {
   country: string;
   name: string;
 } & mongoose.Document;
 
-const cityCatalogSchema = new mongoose.Schema({
+const citySchema = new mongoose.Schema({
   country: {
     ref: Country,
     required: true,
@@ -19,6 +19,6 @@ const cityCatalogSchema = new mongoose.Schema({
   },
 });
 
-const CityCatalog = mongoose.model<CityCatalogType>('City', cityCatalogSchema);
+const City = mongoose.model<CityType>('City', citySchema);
 
-export default CityCatalog;
+export default City;
