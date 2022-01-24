@@ -3,6 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 import Candidate from './candidate';
 import City from './city';
 import Client from './client';
+import Interview from './interview';
 import Level from './level';
 import Technology from './technology';
 import User from './user';
@@ -14,22 +15,10 @@ export type JobApplicationType = {
       referrer?: string;
       stages: [
         {
-          interview?: {
-            date: Date;
-            interviewer: string;
-            scorecard: {
-              feedback?: string;
-              questions: [
-                {
-                  text: string;
-                  rating?: number;
-                }
-              ];
-            };
-            name: string;
-            order: number;
-            status: 'open' | 'failed' | 'successful';
-          };
+          interview?: string;
+          name: string;
+          order: number;
+          status: 'open' | 'failed' | 'successful';
         }
       ];
     }
@@ -40,10 +29,7 @@ export type JobApplicationType = {
   level: string;
   name: string;
   openings: number;
-  place: {
-    country: string;
-    city: string;
-  };
+  place: string;
   technology: string;
 } & mongoose.Document;
 
@@ -62,32 +48,8 @@ const jobApplicationSchema = new mongoose.Schema({
       stages: [
         {
           interview: {
-            date: {
-              required: true,
-              type: Date,
-            },
-            interviewer: {
-              ref: User,
-              required: true,
-              type: Schema.Types.ObjectId,
-            },
-            scorecard: {
-              feedback: String,
-              questions: {
-                required: true,
-                type: [
-                  {
-                    rating: {
-                      type: Number,
-                    },
-                    text: {
-                      required: true,
-                      type: String,
-                    },
-                  },
-                ],
-              },
-            },
+            ref: Interview,
+            type: Schema.Types.ObjectId,
           },
           name: {
             required: true,

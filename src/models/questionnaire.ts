@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 import Level from './level';
+import Stage from './stage';
 import Technology from './technology';
 
 export type QuestionnaireType = {
@@ -21,8 +22,9 @@ const questionnaireSchema = new mongoose.Schema({
     type: [String],
   },
   stage: {
+    ref: Stage,
     required: true,
-    type: String,
+    type: Schema.Types.ObjectId,
   },
   technology: {
     ref: Technology,
