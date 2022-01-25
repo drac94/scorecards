@@ -4,6 +4,7 @@ import cities from './city';
 import clients from './client';
 import countries from './country';
 import levels from './level';
+import questionnaire from './questionnaire';
 import technologies from './technology';
 
 const resolvers: IResolvers = {
@@ -12,6 +13,7 @@ const resolvers: IResolvers = {
     clients,
     countries,
     levels,
+    questionnaire,
     technologies,
   },
 };

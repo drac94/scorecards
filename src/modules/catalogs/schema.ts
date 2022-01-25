@@ -6,6 +6,7 @@ const typeDefs = gql`
     clients: [Client]
     countries: [Country]
     levels: [Level]
+    questionnaire(levelId: ID!, stageId: ID!, technologyId: ID!): Questionnaire
     technologies: [Technology]
   }
 
@@ -28,6 +29,14 @@ const typeDefs = gql`
   type Level {
     id: String
     name: String
+  }
+
+  type Questionnaire {
+    id: String
+    level: String
+    stage: String
+    technology: String
+    questions: [String]
   }
 
   type Technology {
