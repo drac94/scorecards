@@ -8,12 +8,11 @@ type Args = {
 
 const getQuestionnaire = async (_parent: any, args: Args) => {
   const { levelId, stageId, technologyId } = args;
-  const questionnaire = await Questionnaire.findOne({
+  return Questionnaire.findOne({
     level: levelId,
     stage: stageId,
     technology: technologyId,
   });
-  return questionnaire;
 };
 
 export default getQuestionnaire;

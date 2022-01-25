@@ -1,8 +1,7 @@
 import Country from '../../../models/country';
 
 const getCountries = async () => {
-  const countries = await Country.find({});
-  return countries;
+  return Country.find({});
 };
 
 export default getCountries;

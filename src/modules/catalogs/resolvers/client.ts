@@ -1,8 +1,7 @@
 import Client from '../../../models/client';
 
 const getClients = async () => {
-  const clients = await Client.find({});
-  return clients;
+  return Client.find({});
 };
 
 export default getClients;

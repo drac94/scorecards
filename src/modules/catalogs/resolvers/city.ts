@@ -6,8 +6,7 @@ type Args = {
 
 const getCities = async (_parent: any, args: Args) => {
   const { countryId } = args;
-  const cities = await City.find({ country: countryId });
-  return cities;
+  return City.find({ country: countryId });
 };
 
 export default getCities;
