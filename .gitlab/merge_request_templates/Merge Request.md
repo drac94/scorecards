@@ -14,5 +14,3 @@
 <!-- Add before and after screenshots or recording of the feature, if available. -->
 #### Questions
 <!-- List questions or concerns directed to the reviewers, if necessary. --> 
-#### Checklist
-<!-- Verify that you have done all of the following and mark them as done. -->
