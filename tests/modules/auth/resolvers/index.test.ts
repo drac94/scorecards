@@ -76,7 +76,6 @@ describe('auth', () => {
                   id
                 }
                 token
-                tokenExpiration
               }
             }
           `,
@@ -84,7 +83,6 @@ describe('auth', () => {
         .expect((res: Response) => {
           expect(res.body).toHaveProperty('data.login.user.id');
           expect(res.body).toHaveProperty('data.login.token');
-          expect(res.body).toHaveProperty('data.login.tokenExpiration');
         })
         .expect(200);
     });
@@ -102,7 +100,6 @@ describe('auth', () => {
                   id
                 }
                 token
-                tokenExpiration
               }
             }
           `,
@@ -110,7 +107,6 @@ describe('auth', () => {
         .expect((res: Response) => {
           expect(res.body).toHaveProperty('data.login.user.id');
           expect(res.body).toHaveProperty('data.login.token');
-          expect(res.body).toHaveProperty('data.login.tokenExpiration');
 
           loginResponse = res.body;
         })

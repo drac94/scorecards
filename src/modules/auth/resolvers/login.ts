@@ -1,7 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 import bcrypt from 'bcrypt';
 
-import config from '../../../config';
 import User from '../../../models/user';
 import tokenUtil from '../../../utils/token';
 
@@ -30,7 +29,6 @@ const login = async (_parent: any, args: Args) => {
 
   return {
     token,
-    tokenExpiration: config.JwtLifeTime,
     user: {
       email: user.email,
       firstName: user.firstName,

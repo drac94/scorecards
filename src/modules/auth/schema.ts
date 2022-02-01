@@ -14,7 +14,6 @@ const typeDefs = gql`
   type AuthData {
     user: User
     token: String!
-    tokenExpiration: String!
   }
 
   type User {

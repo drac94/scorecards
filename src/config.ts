@@ -1,7 +1,7 @@
 const { PORT, MONGODB_URI, WORKERS, JWT_LIFE_TIME, JWT_SECRET } = process.env;
 
 export default {
-  JwtLifeTime: JWT_LIFE_TIME || '7d',
+  JwtLifeTime: JWT_LIFE_TIME || '20m',
   JwtSecret: JWT_SECRET || '',
   MongoDbURI: MONGODB_URI || '',
   Port: PORT || 5000,
