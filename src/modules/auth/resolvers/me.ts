@@ -11,6 +11,7 @@ const me = async (_parent: any, _args: any, context: Context) => {
     firstName: user.firstName,
     id: user.id,
     lastName: user.lastName,
+    roles: user.roles,
   };
 };
 

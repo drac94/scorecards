@@ -8,7 +8,13 @@ const typeDefs = gql`
   extend type Mutation {
     login(email: String!, password: String!): AuthData
 
-    signup(email: String!, password: String!, firstName: String!, lastName: String!): User
+    signup(
+      email: String!
+      password: String!
+      firstName: String!
+      lastName: String!
+      roles: [String]!
+    ): User
   }
 
   type AuthData {
@@ -21,7 +27,7 @@ const typeDefs = gql`
     email: String!
     firstName: String!
     lastName: String!
-    created: DateTime!
+    roles: [String]!
   }
 `;
 

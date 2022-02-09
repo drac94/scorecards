@@ -10,10 +10,11 @@ type Args = {
   password: string;
   firstName: string;
   lastName: string;
+  roles: [string];
 };
 
 const signup = async (_parent: any, args: Args) => {
-  const { email, password, firstName, lastName } = args;
+  const { email, password, firstName, lastName, roles } = args;
   try {
     const existingUser = await User.findOne({
       email,
@@ -30,6 +31,7 @@ const signup = async (_parent: any, args: Args) => {
       firstName,
       hashedPassword,
       lastName,
+      roles,
     });
 
     return {
@@ -38,6 +40,7 @@ const signup = async (_parent: any, args: Args) => {
       hashedPassword: null,
       id: user.id,
       lastName: user.lastName,
+      roles: user.roles,
     };
   } catch (error) {
     throw new Error(error);

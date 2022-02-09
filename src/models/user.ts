@@ -5,6 +5,7 @@ export type UserType = {
   firstName: string;
   hashedPassword: string;
   lastName: string;
+  roles: [string];
 } & mongoose.Document;
 
 const userSchema = new mongoose.Schema({
@@ -23,6 +24,10 @@ const userSchema = new mongoose.Schema({
   lastName: {
     required: true,
     type: String,
+  },
+  roles: {
+    required: true,
+    type: [String],
   },
 });
 

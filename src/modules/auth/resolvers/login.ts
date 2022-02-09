@@ -34,6 +34,7 @@ const login = async (_parent: any, args: Args) => {
       firstName: user.firstName,
       id: user.id,
       lastName: user.lastName,
+      roles: user.roles,
     },
   };
 };

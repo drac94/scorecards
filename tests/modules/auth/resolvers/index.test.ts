@@ -3,21 +3,23 @@ import expect from 'expect';
 import request from '../../../request-helper';
 
 type User = {
-  email: string;
-  password: string | null;
-  firstName: string;
-  lastName: string;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  roles?: [string];
 };
 
-const testUser = {
+const testUser: User = {
   email: 'test-user@gmail.com',
   firstName: 'test',
   lastName: 'user',
   password: 'test1234',
+  roles: ['admin'],
 };
 
 const signup = (
-  { email, password, firstName, lastName }: User,
+  { email, password, firstName, lastName, roles }: User,
   returnValues = `{
     id
     email
@@ -27,10 +29,11 @@ const signup = (
     query: `
         mutation {
           signup(
-            email: "${email}",
-            password: "${password}",
-            firstName: "${firstName}",
-            lastName: "${lastName}"
+            ${email ? `email: "${email}"` : ''},
+            ${password ? `password: "${password}"` : ''},
+            ${firstName ? `firstName: "${firstName}"` : ''},
+            ${lastName ? `lastName: "${lastName}"` : ''},
+            ${roles ? `roles: "${roles}"` : ''}
           ) ${returnValues}
         }
       `,
@@ -39,6 +42,16 @@ const signup = (
 
 describe('auth', () => {
   describe('sign up', () => {
+    it('should not create a new user when some data is missing', () => {
+      return signup({
+        ...testUser,
+        lastName: undefined,
+      }).expect((res) => {
+        expect(res.body).toHaveProperty('errors');
+        expect(Array.isArray(res.body.errors)).toBe(true);
+      });
+    });
+
     it('should create a new user', () => {
       return signup(testUser)
         .expect((res) => {
@@ -46,16 +59,6 @@ describe('auth', () => {
           expect(res.body).toHaveProperty('data.signup.email', testUser.email);
         })
         .expect(200);
-    });
-
-    it('should not create a new user when a password is missing', () => {
-      return signup({
-        ...testUser,
-        password: null,
-      }).expect((res) => {
-        expect(res.body).toHaveProperty('errors');
-        expect(Array.isArray(res.body.errors)).toBe(true);
-      });
     });
 
     it('should not create a new user with the same email', () => {
