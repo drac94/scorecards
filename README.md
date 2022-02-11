@@ -18,6 +18,7 @@
 - Prettier
 - ESLint
 - Husky
+- Docker
 
 ## Folder Structure
 
@@ -33,11 +34,19 @@
 ## Setup Development Env
 
 - Clone the repository
+- Make a copy of the `.env.sample` file and rename it to `.env`
+
+### With Docker
+- Install [Docker](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+- Install [DockerCompose](https://docs.docker.com/compose/install/)
+- Run `docker-compose build`
+- Run `docker-compose up`
+
+### Without Docker
 - Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 - Run `nvm use` to use the correct version of node supported
 - Run `yarn install` to install the dependencies
 - Install [Mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-- Make a copy of the `.env.sample` file and rename it to `.env`
 - Create a new database (without any collection) and set the URI in the .env file i.e. `mongodb://localhost:27017/{database_name}`
 
 ## Scripts
