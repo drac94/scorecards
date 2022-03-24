@@ -15,36 +15,32 @@ type Args = {
 
 const signup = async (_parent: any, args: Args) => {
   const { email, password, firstName, lastName, roles } = args;
-  try {
-    const existingUser = await User.findOne({
-      email,
-    });
+  const existingUser = await User.findOne({
+    email,
+  });
 
-    if (existingUser) {
-      throw new UserInputError('User already exists');
-    }
-
-    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-
-    const user = await User.create({
-      email,
-      firstName,
-      hashedPassword,
-      lastName,
-      roles,
-    });
-
-    return {
-      email: user.email,
-      firstName: user.firstName,
-      hashedPassword: null,
-      id: user.id,
-      lastName: user.lastName,
-      roles: user.roles,
-    };
-  } catch (error) {
-    throw new Error(error);
+  if (existingUser) {
+    throw new UserInputError('User already exists');
   }
+
+  const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+  const user = await User.create({
+    email,
+    firstName,
+    hashedPassword,
+    lastName,
+    roles,
+  });
+
+  return {
+    email: user.email,
+    firstName: user.firstName,
+    hashedPassword: null,
+    id: user.id,
+    lastName: user.lastName,
+    roles: user.roles,
+  };
 };
 
 export default signup;

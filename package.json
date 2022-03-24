@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "lint": "eslint --fix --ext .ts .",
+    "start": "ts-node -r dotenv/config src/index.ts",
     "format": "prettier --write './**/*.{ts}'",
     "test": "NODE_ENV=mocha mocha -r ts-node/register -r dotenv/config --recursive tests/**/*.test.ts --file tests/config.ts"
   },
