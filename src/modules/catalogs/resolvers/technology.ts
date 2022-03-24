@@ -1,7 +1,7 @@
-import Technology from '../../../models/technology';
+import TechnologyModel from '../../../models/technology';
 
 const getTechnologies = async () => {
-  return Technology.find({});
+  return TechnologyModel.find({});
 };
 
 export default getTechnologies;

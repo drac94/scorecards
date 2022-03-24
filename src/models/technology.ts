@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
 
-export type TechnologyType = {
+export type Technology = {
   name: string;
 } & mongoose.Document;
 
-const technologySchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   name: {
     required: true,
     type: String,
   },
 });
 
-const Technology = mongoose.model<TechnologyType>('Technology', technologySchema);
+const TechnologyModel = mongoose.model<Technology>('Technology', schema);
 
-export default Technology;
+export default TechnologyModel;

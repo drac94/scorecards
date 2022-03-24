@@ -1,7 +1,7 @@
 import { AuthenticationError } from 'apollo-server-express';
 import bcrypt from 'bcrypt';
 
-import User from '../../../models/user';
+import UserModel from '../../../models/user';
 import tokenUtil from '../../../utils/token';
 
 type Args = {
@@ -11,7 +11,7 @@ type Args = {
 
 const login = async (_parent: any, args: Args) => {
   const { email, password } = args;
-  const user = await User.findOne({
+  const user = await UserModel.findOne({
     email,
   });
 

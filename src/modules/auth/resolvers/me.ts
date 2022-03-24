@@ -1,7 +1,7 @@
-import { UserType } from '../../../models/user';
+import { User } from '../../../models/user';
 
 type Context = {
-  user: UserType;
+  user: User;
 };
 
 const me = async (_parent: any, _args: any, context: Context) => {

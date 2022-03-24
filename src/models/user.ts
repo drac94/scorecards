@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export type UserType = {
+export type User = {
   email: string;
   firstName: string;
   hashedPassword: string;
@@ -8,7 +8,7 @@ export type UserType = {
   roles: [string];
 } & mongoose.Document;
 
-const userSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   email: {
     required: true,
     type: String,
@@ -31,6 +31,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model<UserType>('User', userSchema);
+const UserModel = mongoose.model<User>('User', schema);
 
-export default User;
+export default UserModel;

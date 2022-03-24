@@ -1,7 +1,7 @@
 import { UserInputError } from 'apollo-server-express';
 import bcrypt from 'bcrypt';
 
-import User from '../../../models/user';
+import UserModel from '../../../models/user';
 
 const SALT_ROUNDS = 12;
 
@@ -15,7 +15,7 @@ type Args = {
 
 const signup = async (_parent: any, args: Args) => {
   const { email, password, firstName, lastName, roles } = args;
-  const existingUser = await User.findOne({
+  const existingUser = await UserModel.findOne({
     email,
   });
 
@@ -25,7 +25,7 @@ const signup = async (_parent: any, args: Args) => {
 
   const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
-  const user = await User.create({
+  const user = await UserModel.create({
     email,
     firstName,
     hashedPassword,

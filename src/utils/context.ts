@@ -1,10 +1,10 @@
 import { Request } from 'express';
 
-import User, { UserType } from '../models/user';
+import UserModel, { User } from '../models/user';
 
 import tokenUtil from './token';
 
-const getUser = async (req: Request): Promise<UserType | null> => {
+const getUser = async (req: Request): Promise<User | null> => {
   if (!req) {
     return null;
   }
@@ -19,7 +19,7 @@ const getUser = async (req: Request): Promise<UserType | null> => {
     const decodedToken = await tokenUtil.getDecodedToken(
       authorizationHeader.replace('Bearer ', '')
     );
-    return await User.findById(decodedToken.userId);
+    return await UserModel.findById(decodedToken.userId);
   } catch (error) {
     return null;
   }
