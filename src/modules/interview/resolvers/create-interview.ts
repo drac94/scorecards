@@ -24,6 +24,7 @@ const createInterview = async (_parent: any, args: Args) => {
     technology,
   });
 
+  // TODO use populate instead
   return {
     candidate: newCandidate,
     date: interview.date,

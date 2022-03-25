@@ -14,6 +14,7 @@ describe('interview', () => {
   let token: any = null;
   let techId: any = null;
   let userId: any = null;
+  let interviewId: any = null;
   before(async () => {
     await request({
       query: `
@@ -86,6 +87,7 @@ describe('interview', () => {
           expect(res.body).toHaveProperty('data.createInterview.candidate');
           expect(res.body).toHaveProperty('data.createInterview.date');
           expect(res.body).toHaveProperty('data.createInterview.interviewer');
+          interviewId = res.body.data.createInterview.id;
         })
         .expect(200);
     });
@@ -116,6 +118,59 @@ describe('interview', () => {
         .expect((res) => {
           expect(res.body).toHaveProperty('data.interviews');
           expect(res.body.data.interviews).toHaveLength(1);
+        });
+    });
+  });
+
+  describe('fill-scorecard', () => {
+    it('should fill a scorecard if the interview exists', () => {
+      return request({
+        query: `
+            mutation {
+                fillScorecard(
+                    interview: "${interviewId}"
+                    scorecard: {
+                        feedback:"rejected"
+                        skills: [{
+                            feedback: "xxx"
+                            name: "Hooks"
+                            rating: 2
+                        },
+                        {
+                            feedback: "xxx"
+                            name: "Rendering"
+                            rating: 3
+                        }]
+                    }
+                ) {
+                    id
+                    candidate {
+                        id
+                        firstName
+                        lastName
+                    }
+                    date
+                    interviewer {
+                        id
+                        firstName
+                        lastName
+                    }
+                    scorecard {
+                        feedback
+                        skills {
+                            feedback
+                            name
+                            rating
+                        }
+                    }
+                }
+            }`,
+      })
+        .set('Authorization', `Bearer ${token}`)
+        .expect((res) => {
+          expect(res.body).toHaveProperty('data.fillScorecard');
+          expect(res.body).toHaveProperty('data.fillScorecard.scorecard.skills');
+          expect(res.body.data.fillScorecard.scorecard.skills).toHaveLength(2);
         });
     });
   });

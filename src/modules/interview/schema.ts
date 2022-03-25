@@ -37,12 +37,24 @@ const typeDefs = gql`
     lastName: String
   }
 
+  type SCFeedback {
+    feedback: String
+    name: String
+    rating: Int
+  }
+
+  type Scorecard {
+    feedback: String
+    skills: [SCFeedback]
+  }
+
   type Interview {
     id: ID
     candidate: Candidate
     date: DateTime
     interviewer: User
     technology: Technology
+    scorecard: Scorecard
   }
 `;
 
