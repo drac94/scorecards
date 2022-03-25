@@ -6,7 +6,12 @@ const typeDefs = gql`
   }
 
   extend type Mutation {
-    createInterview(interviewer: ID!, candidate: CandidateInput!, date: Date!, technology: ID!): Interview @isAuthenticated
+    createInterview(
+      interviewer: ID!
+      candidate: CandidateInput!
+      date: String!
+      technology: ID!
+    ): Interview @isAuthenticated
     fillScorecard(interview: ID!, scorecard: ScorecardInput!): Interview @isAuthenticated
   }
 
@@ -15,22 +20,29 @@ const typeDefs = gql`
     lastName: String
   }
 
+  input SCFeedbackInput {
+    feedback: String
+    name: String
+    rating: Int
+  }
+
   input ScorecardInput {
-    feedback: String;
-    skills: [{ feedback: String; name: String; rating: Int }];
+    feedback: String
+    skills: [SCFeedbackInput]
   }
 
   type Candidate {
     id: ID
     firstName: String
     lastName: String
-  } 
-  
+  }
+
   type Interview {
     id: ID
     candidate: Candidate
+    date: DateTime
     interviewer: User
-    date: Date
+    technology: Technology
   }
 `;
 

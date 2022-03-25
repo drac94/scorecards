@@ -1,9 +1,11 @@
 import CandidateModel, { Candidate } from '../../../models/candidate';
 import InterviewModel from '../../../models/interview';
+import TechnologyModel from '../../../models/technology';
+import UserModel from '../../../models/user';
 
 type Args = {
   candidate: Candidate;
-  date: Date;
+  date: string;
   interviewer: string;
   technology: string;
 };
@@ -17,12 +19,18 @@ const createInterview = async (_parent: any, args: Args) => {
 
   const interview = await InterviewModel.create({
     candidate: newCandidate.id,
-    date,
+    date: new Date(date),
     interviewer,
     technology,
   });
 
-  return interview;
+  return {
+    candidate: newCandidate,
+    date: interview.date,
+    id: interview.id,
+    interviewer: await UserModel.findOne({ _id: interviewer }),
+    technology: await TechnologyModel.findOne({ _id: technology }),
+  };
 };
 
 export default createInterview;
