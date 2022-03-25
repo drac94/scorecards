@@ -1,7 +1,8 @@
+import CandidateModel, { Candidate } from '../../../models/candidate';
 import InterviewModel from '../../../models/interview';
 
 type Args = {
-  candidate: string;
+  candidate: Candidate;
   date: Date;
   interviewer: string;
   technology: string;
@@ -10,8 +11,12 @@ type Args = {
 const createInterview = async (_parent: any, args: Args) => {
   const { candidate, date, interviewer, technology } = args;
 
+  const newCandidate = await CandidateModel.create({
+    ...candidate,
+  });
+
   const interview = await InterviewModel.create({
-    candidate,
+    candidate: newCandidate.id,
     date,
     interviewer,
     technology,
