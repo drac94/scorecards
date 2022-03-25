@@ -1,7 +1,7 @@
 import makeExecutableSchemaFromModules from '../utils/modules';
 
 import auth from './auth';
-import skillMatrix from './skillMatrix';
+import skillMatrix from './skill-matrix';
 import technology from './technology';
 
 export default makeExecutableSchemaFromModules({

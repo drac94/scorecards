@@ -116,8 +116,7 @@ describe('technology', () => {
         .set('Authorization', `Bearer ${token}`)
         .expect((res) => {
           expect(res.body).toHaveProperty('data.technologies');
-          expect(res.body.data.technologies).toHaveLength(1);
-          expect(res.body.data.technologies[0].name).toBe('React');
+          expect(res.body.data.technologies).toHaveLength(2); // one created in the skill matrix test
         });
     });
   });

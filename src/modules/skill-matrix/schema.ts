@@ -2,7 +2,11 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   extend type Query {
-    skillMatrix(technologyId: ID!): SkillMatrix
+    skillMatrix(technology: ID!): SkillMatrix @isAuthenticated
+  }
+
+  extend type Mutation {
+    createSkillMatrix(technology: ID!, skills: [String!]!): SkillMatrix @isAuthenticated
   }
 
   type SkillMatrix {
