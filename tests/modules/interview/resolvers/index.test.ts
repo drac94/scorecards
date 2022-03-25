@@ -169,6 +169,8 @@ describe('interview', () => {
         .set('Authorization', `Bearer ${token}`)
         .expect((res) => {
           expect(res.body).toHaveProperty('data.fillScorecard');
+          expect(res.body).toHaveProperty('data.fillScorecard.candidate.id');
+          expect(res.body).toHaveProperty('data.fillScorecard.interviewer.id');
           expect(res.body).toHaveProperty('data.fillScorecard.scorecard.skills');
           expect(res.body.data.fillScorecard.scorecard.skills).toHaveLength(2);
         });
