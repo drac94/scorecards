@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
-export type CandidateType = {
+export type Candidate = {
   firstName: string;
   lastName: string;
 } & mongoose.Document;
 
-const candidateSchema = new mongoose.Schema({
+const schema = new mongoose.Schema<Candidate>({
   firstName: {
     required: true,
     type: String,
@@ -16,6 +16,6 @@ const candidateSchema = new mongoose.Schema({
   },
 });
 
-const Candidate = mongoose.model<CandidateType>('Candidate', candidateSchema);
+const CandidateModel = mongoose.model<Candidate>('Candidate', schema);
 
-export default Candidate;
+export default CandidateModel;

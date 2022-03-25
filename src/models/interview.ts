@@ -1,17 +1,28 @@
 import { Document, Schema, model } from 'mongoose';
 
-import UserModel, { User } from './user';
+import CandidateModel from './candidate';
+import TechnologyModel from './technology';
+import UserModel from './user';
+
+export type Scorecard = {
+  feedback: string;
+  skills: { feedback: string; name: string; rating: number }[];
+};
 
 export type Interview = {
+  candidate: string;
   date: Date;
-  interviewer: User;
-  scorecard: {
-    feedback: string;
-    skills: { feedback: string; name: string; rating: number }[];
-  };
+  interviewer: string;
+  scorecard?: Scorecard;
+  technology: string;
 } & Document;
 
 const schema = new Schema<Interview>({
+  candidate: {
+    ref: CandidateModel,
+    required: true,
+    type: Schema.Types.ObjectId,
+  },
   date: {
     required: true,
     type: Date,
@@ -43,6 +54,7 @@ const schema = new Schema<Interview>({
       ],
     },
   },
+  technology: { ref: TechnologyModel, required: true, type: Schema.Types.ObjectId },
 });
 
 const InterviewModel = model<Interview>('Interview', schema);

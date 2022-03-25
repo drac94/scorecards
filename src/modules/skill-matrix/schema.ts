@@ -10,8 +10,8 @@ const typeDefs = gql`
   }
 
   type SkillMatrix {
-    id: String
-    technology: String
+    id: ID
+    technology: ID
     skills: [String]
   }
 `;

@@ -10,7 +10,7 @@ const typeDefs = gql`
   }
 
   type Technology {
-    id: String
+    id: ID
     name: String
   }
 `;
