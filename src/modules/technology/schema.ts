@@ -2,7 +2,11 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   extend type Query {
-    technologies: [Technology]
+    technologies: [Technology] @isAuthenticated
+  }
+
+  extend type Mutation {
+    createTechnology(name: String!): Technology @isAuthenticated
   }
 
   type Technology {
