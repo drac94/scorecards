@@ -12,7 +12,7 @@ const typeDefs = gql`
       date: String!
       technology: ID!
     ): Interview @isAuthenticated
-    fillScorecard(interview: ID!, scorecard: ScorecardInput!): Interview @isAuthenticated
+    fillScorecard(interviewId: ID!, scorecard: ScorecardInput!): Interview @isAuthenticated
   }
 
   input CandidateInput {

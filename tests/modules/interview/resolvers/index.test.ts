@@ -98,7 +98,7 @@ describe('interview', () => {
       return request({
         query: `
             query {
-                interviews(interviewer: "${userId}") {
+                interviews {
                     id
                     candidate {
                         id
@@ -128,7 +128,7 @@ describe('interview', () => {
         query: `
             mutation {
                 fillScorecard(
-                    interview: "${interviewId}"
+                    interviewId: "${interviewId}"
                     scorecard: {
                         feedback:"rejected"
                         skills: [{
