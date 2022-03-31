@@ -1,14 +1,18 @@
 import InterviewModel from '../../../models/interview';
+import { User } from '../../../models/user';
 
-type Args = {
-  interviewer: string;
+type Context = {
+  user: User;
 };
 
-const getInterviews = async (_parent: any, args: Args) => {
-  const { interviewer } = args;
+const getInterviews = async (_parent: any, _args: any, context: Context) => {
+  const { user } = context;
   return InterviewModel.find({
-    interviewer,
-  });
+    interviewer: user.id,
+  })
+    .populate('interviewer')
+    .populate('candidate')
+    .populate('technology');
 };
 
 export default getInterviews;
