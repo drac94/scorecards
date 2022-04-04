@@ -12,6 +12,7 @@ const getInterviews = async (_parent: any, _args: any, context: Context) => {
   })
     .populate('interviewer')
     .populate('candidate')
+    .populate('recruiter')
     .populate('technology');
 };
 

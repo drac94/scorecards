@@ -62,6 +62,7 @@ describe('interview', () => {
             mutation {
                 createInterview(
                     interviewer:"${userId}"
+                    recruiter:"${userId}"
                     candidate: {firstName: "john", lastName: "doe"}
                     date: "03/26/2022"
                     technology: "${techId}"

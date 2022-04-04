@@ -13,6 +13,7 @@ export type Interview = {
   candidate: string;
   date: Date;
   interviewer: string;
+  recruiter: string;
   scorecard?: Scorecard;
   technology: string;
 } & Document;
@@ -28,6 +29,11 @@ const schema = new Schema<Interview>({
     type: Date,
   },
   interviewer: {
+    ref: UserModel,
+    required: true,
+    type: Schema.Types.ObjectId,
+  },
+  recruiter: {
     ref: UserModel,
     required: true,
     type: Schema.Types.ObjectId,

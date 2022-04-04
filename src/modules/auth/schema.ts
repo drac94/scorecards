@@ -21,14 +21,6 @@ const typeDefs = gql`
     user: User
     token: String!
   }
-
-  type User {
-    id: ID!
-    email: String!
-    firstName: String!
-    lastName: String!
-    roles: [String]!
-  }
 `;
 
 export default typeDefs;

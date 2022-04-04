@@ -5,11 +5,12 @@ type Args = {
   candidate: Candidate;
   date: string;
   interviewer: string;
+  recruiter: string;
   technology: string;
 };
 
 const createInterview = async (_parent: any, args: Args) => {
-  const { candidate, date, interviewer, technology } = args;
+  const { candidate, date, interviewer, recruiter, technology } = args;
 
   const newCandidate = await CandidateModel.create({
     ...candidate,
@@ -19,11 +20,13 @@ const createInterview = async (_parent: any, args: Args) => {
     candidate: newCandidate.id,
     date: new Date(date),
     interviewer,
+    recruiter,
     technology,
   });
 
   return newInterview
     .populate('candidate')
+    .populate('recruiter')
     .populate('interviewer')
     .populate('technology')
     .execPopulate();

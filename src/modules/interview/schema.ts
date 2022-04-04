@@ -10,6 +10,7 @@ const typeDefs = gql`
       interviewer: ID!
       candidate: CandidateInput!
       date: String!
+      recruiter: ID!
       technology: ID!
     ): Interview @isAuthenticated
     fillScorecard(interviewId: ID!, scorecard: ScorecardInput!): Interview @isAuthenticated
@@ -53,6 +54,7 @@ const typeDefs = gql`
     candidate: Candidate
     date: DateTime
     interviewer: User
+    recruiter: User
     technology: Technology
     scorecard: Scorecard
   }
