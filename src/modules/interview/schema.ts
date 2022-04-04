@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express';
 const typeDefs = gql`
   extend type Query {
     interviews: [Interview] @isAuthenticated
+    interview(id: ID!): Interview @isAuthenticated
   }
 
   extend type Mutation {
