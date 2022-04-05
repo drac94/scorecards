@@ -18,8 +18,8 @@ const typeDefs = gql`
   }
 
   input CandidateInput {
-    firstName: String
-    lastName: String
+    firstName: String!
+    lastName: String!
   }
 
   input SCFeedbackInput {
@@ -29,8 +29,9 @@ const typeDefs = gql`
   }
 
   input ScorecardInput {
-    feedback: String
+    feedback: String!
     skills: [SCFeedbackInput]
+    status: Int!
   }
 
   type Candidate {
@@ -48,6 +49,7 @@ const typeDefs = gql`
   type Scorecard {
     feedback: String
     skills: [SCFeedback]
+    status: Int
   }
 
   type Interview {

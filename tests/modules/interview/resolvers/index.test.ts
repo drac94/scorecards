@@ -142,6 +142,7 @@ describe('interview', () => {
                             name: "Rendering"
                             rating: 3
                         }]
+                        status: 1
                     }
                 ) {
                     id
@@ -163,6 +164,7 @@ describe('interview', () => {
                             name
                             rating
                         }
+                        status
                     }
                 }
             }`,

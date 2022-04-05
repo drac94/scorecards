@@ -7,6 +7,7 @@ import UserModel from './user';
 export type Scorecard = {
   feedback: string;
   skills: { feedback: string; name: string; rating: number }[];
+  status: number;
 };
 
 export type Interview = {
@@ -39,25 +40,35 @@ const schema = new Schema<Interview>({
     type: Schema.Types.ObjectId,
   },
   scorecard: {
-    feedback: String,
-    skills: {
-      required: true,
-      type: [
-        {
-          feedback: {
-            required: true,
-            type: String,
+    required: false,
+    type: {
+      feedback: {
+        required: true,
+        type: String,
+      },
+      skills: {
+        required: true,
+        type: [
+          {
+            feedback: {
+              required: true,
+              type: String,
+            },
+            name: {
+              required: true,
+              type: String,
+            },
+            rating: {
+              required: true,
+              type: Number,
+            },
           },
-          name: {
-            required: true,
-            type: String,
-          },
-          rating: {
-            required: true,
-            type: Number,
-          },
-        },
-      ],
+        ],
+      },
+      status: {
+        required: true,
+        type: Number,
+      },
     },
   },
   technology: { ref: TechnologyModel, required: true, type: Schema.Types.ObjectId },
